@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
-    "docker:mongo": "docker run --name natuors_mongo -p 27017:27017 -d -t mongo"
+    "docker:mongo": "docker run --name natuors_mongo -p 27017:27017 -d -t mongo",
+    "db:populated": "node dev-data/data/import-dev-data.js --import",
+    "db:deleted": "node dev-data/data/import-dev-data.js --delete"
   },
   "author": "Andre Santos",
   "license": "ISC",
@@ -27,5 +29,8 @@
     "eslint-plugin-react": "^7.12.4",
     "nodemon": "^2.0.4",
     "prettier": "^1.17.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
