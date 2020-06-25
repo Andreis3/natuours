@@ -2,7 +2,6 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const { json } = require('express');
 const Tour = require('../../models/tourModel');
 
 dotenv.config({ path: './config.env' });
