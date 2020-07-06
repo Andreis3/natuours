@@ -8,7 +8,8 @@
     "start:prod": "NODE_ENV=production nodemon server.js",
     "docker:mongo": "docker run --name natuors_mongo -p 27017:27017 -d -t mongo",
     "db:populated": "node dev-data/data/import-dev-data.js --import",
-    "db:deleted": "node dev-data/data/import-dev-data.js --delete"
+    "db:deleted": "node dev-data/data/import-dev-data.js --delete",
+    "debug": "ndb server.js"
   },
   "author": "Andre Santos",
   "license": "ISC",
@@ -17,7 +18,8 @@
     "express": "^4.16.4",
     "mongoose": "^5.9.19",
     "morgan": "^1.9.1",
-    "slugify": "^1.4.4"
+    "slugify": "^1.4.4",
+    "validator": "^13.1.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "ndb": "^1.1.5",
     "nodemon": "^2.0.4",
     "prettier": "^1.17.0"
   },
