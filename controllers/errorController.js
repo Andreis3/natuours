@@ -40,7 +40,7 @@ const sendErrorProd = (err, res) => {
       message: err.message
     });
 
-    // Proframming or other unknown error: don't leak error details
+    // Programming or other unknown error: don't leak error details
   } else {
     // 1) Log error
     console.error('ERROR 💥 ', err);
@@ -51,6 +51,12 @@ const sendErrorProd = (err, res) => {
     });
   }
 };
+
+const handlerJWTError = () =>
+  new AppError('Invalid token. Please log in again!', 401);
+
+const handlerJWTExpiredError = () =>
+  new AppError('Your token has expired! Please log in again', 401);
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
@@ -67,6 +73,8 @@ module.exports = (err, req, res, next) => {
     if (error.code === 11000) error = handlerDuplicateFields(error);
     if (error._message === 'Validation failed')
       error = handlerValidatorError(error);
+    if (error.name === 'JsonWebTokenError') error = handlerJWTError();
+    if (error.name === 'TokenExpiredError') error = handlerJWTExpiredError();
 
     sendErrorProd(error, res);
   }
